@@ -10,15 +10,15 @@ from . forms import ContractForm
 def Addcontract(request):
     
     if request.method == 'POST':
-        form = ContractForm(request.POST)
+        form = ContractForm(request.POST or None, request.FILES or None) 
         
         if form.is_valid():
             Contract=form.save(commit =False)
-            
+            document=request.FILES['document']
             Contract.save()
-         
-           
-
+            
+            
+          
         
     else: 
         form =ContractForm()
